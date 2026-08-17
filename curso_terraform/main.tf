@@ -18,6 +18,14 @@ resource "aws_instance" "nginx-server" {
     vpc_security_group_ids = [
         aws_security_group.nginx-server-sg.id
     ]
+
+    tags = {
+        Name = "nginx-server"
+        Environment = "test"
+        Owner = "jgiraldoz@eafit.edu.co"
+        Team = "DevOps"
+        Project = "Curso Terraform"
+    }
 }
 
 resource "aws_security_group" "nginx-server-sg"{
@@ -44,9 +52,36 @@ resource "aws_security_group" "nginx-server-sg"{
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    tags = {
+        Name = "nginx-server-sg"
+        Environment = "test"
+        Owner = "jgiraldoz@eafit.edu.co"
+        Team = "DevOps"
+        Project = "Curso Terraform"
+    }
 }
 
 resource "aws_key_pair" "nginx-server-ssh" {
+    # ssh-keygen -t rsa -b 2048 -f "nginx-server.key"
     key_name = "nginx-server-ssh"
     public_key = file("nginx-server.key.pub")
+
+    tags = {
+        Name = "nginx-server-ssh"
+        Environment = "test"
+        Owner = "jgiraldoz@eafit.edu.co"
+        Team = "DevOps"
+        Project = "Curso Terraform"
+    }
+}
+
+output "nginx-server-public-ip" {
+    description = "Public IP address of the Nginx server"
+    value = aws_instance.nginx-server.public_ip
+}
+
+output "nginx-server-public-dns" {
+    description = "Public DNS of the Nginx server"
+    value = aws_instance.nginx-server.public_dns
 }
