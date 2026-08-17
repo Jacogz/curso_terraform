@@ -1,0 +1,46 @@
+# Terraform state files
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform cache
+.terraform/
+.terraform.lock.hcl
+
+# Private keys
+*.key
+*.pem
+*.ppk
+
+# Public keys (optional - remove if you want to keep them)
+*.pub
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Terraform overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Local environment files (if you use them)
+*.tfvars.local
+*.tfvars.json
+
+# Ignore local env files but keep the examples
+!*.tfvars.example
+!*.tfvars.sample
+
+# OS files
+.DS_Store
+Thumbs.db
